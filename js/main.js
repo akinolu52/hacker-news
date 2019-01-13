@@ -46,19 +46,25 @@ async function getAllNews() {
 async function getSingleNews(element) {
     let response = await fetch(`${BASE_URL}/item/${element}.json`);
     let resp = await response.json();
-    // console.log(resp);
     let output = '';
     output += `
         <dt><a href="${resp.url}" target="_blank" title="View News">${resp.title}</a></dt>
         <dd>
-            <a href="https://news.ycombinator.com/vote?id=${resp.id}&how=up&goto=news" target="_blank" title="Vote"><i class="fa fa-sort-up"></i></a> <span>${resp.score} points</span> |
-            <i class="fa fa-user"></i> <a href="https://news.ycombinator.com/user?id=${resp.by}" target="_blank" title="View User Post"><span>${resp.by}</span></a> |
-            <i class="fa fa-clock"></i> <a href="https://news.ycombinator.com/item?id=${resp.id}" target="_blank" title="View Post"><span>${timeAgo(resp.time)}</span></a> |
-            <i class="fa fa-comments"></i> <a href="https://news.ycombinator.com/item?id=${resp.id}" target="_blank" title="View Post"><span>${resp.descendants} comments</span></a> 
+            <div>
+            <a href="https://news.ycombinator.com/vote?id=${resp.id}&how=up&goto=news" target="_blank" title="Vote"><i class="fa fa-sort-up"></i></a> <span>${resp.score} points |</span>            
+            </div>
+            <div>
+            <i class="fa fa-user"></i> <a href="https://news.ycombinator.com/user?id=${resp.by}" target="_blank" title="View User Post"><span>${resp.by} |</span></a>
+            </div>
+            <div>
+            <i class="fa fa-clock"></i> <a href="https://news.ycombinator.com/item?id=${resp.id}" target="_blank" title="View Post"><span>${timeAgo(resp.time)} |</span></a>            
+            </div>
+            <div>
+            <i class="fa fa-comments"></i> <a href="https://news.ycombinator.com/item?id=${resp.id}" target="_blank" title="View Post"><span>${resp.descendants} comments </span></a>             
+            </div>
         </dd>`;
         document.querySelector('.news').innerHTML += output;
     return true;
 }
-
 
 getAllNews();
