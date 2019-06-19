@@ -1,6 +1,6 @@
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 let NEWS_COUNT_START = 0;
-let NEWS_COUNT_STOP = 20;
+let NEWS_COUNT_STOP = 30;
 
 function timeAgo(date) {
     let seconds = Math.floor((new Date() - date) / 1000);
